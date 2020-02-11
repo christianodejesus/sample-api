@@ -1,0 +1,53 @@
+{
+  "name": "telecom-api",
+  "version": "1.0.0",
+  "description": "API project",
+  "main": "src/server.js",
+  "repository": "https://github.com/christianodejesus/telecom-api.git",
+  "author": "Christiano Marques <https://github.com/christianodejesus>",
+  "license": "MIT",
+  "scripts": {
+    "lint": "./node_modules/.bin/eslint ./src/",
+    "dev": "./node_modules/.bin/nodemon --exec sucrase-node ./src/server.js --ignore __tests__",
+    "prebuild": "rm -Rf build/**",
+    "build": "./node_modules/.bin/babel ./src -d",
+    "build:dev": "npm run build -- ./build/debug --source-maps",
+    "build:prod": "npm run build -- ./build/release",
+    "prestart": "npm run build:prod",
+    "start": "node ./build/release/server.js"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.7.4",
+    "@koa/cors": "^3.0.0",
+    "@koa/router": "^8.0.8",
+    "dotenv": "^8.2.0",
+    "koa": "^2.11.0",
+    "koa-bodyparser": "^4.2.1",
+    "mongoose": "^5.8.11"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.4",
+    "@babel/core": "^7.7.4",
+    "@babel/node": "^7.7.4",
+    "@babel/plugin-transform-runtime": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
+    "@types/jest": "^24.0.23",
+    "eslint": "^6.7.2",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "husky": "^3.1.0",
+    "jest": "^24.9.0",
+    "nodemon": "^2.0.1",
+    "sucrase": "^3.10.1",
+    "supertest": "^4.0.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "pre-push": "npm run lint"
+    }
+  }
+}
