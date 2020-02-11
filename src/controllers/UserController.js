@@ -9,9 +9,9 @@ class UserController {
   }
 
   async create (ctx) {
-    const { email, firstName, lastName } = ctx.request.body
+    const { name, email, password } = ctx.request.body
     const user = await User.create({
-      email, firstName, lastName
+      name, email, password
     })
 
     ctx.body = user
