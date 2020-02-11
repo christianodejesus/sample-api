@@ -38,7 +38,15 @@ class App {
   }
 
   database () {
-    mongoose.connect(`mongodb://${env.DB_HOST}:${env.DB_PORT}/${env.DB_NAME}`, {
+    const userStr = env.DB_USER !== undefined && env.DB_USER !== ''
+      ? `${env.DB_USER}:${env.DB_PASS}@`
+      : ''
+    const portStr = env.DB_PORT !== undefined && env.DB_PORT > 0
+      ? `:${env.DB_PORT}`
+      : ''
+    const connectionStr = `${env.DB_PROTOCOL}://${userStr}${env.DB_HOST}${portStr}/${env.DB_NAME}`
+
+    mongoose.connect(connectionStr, {
       useNewUrlParser: true,
       useUnifiedTopology: true
     })
