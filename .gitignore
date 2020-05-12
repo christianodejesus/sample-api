@@ -33,3 +33,7 @@ node_modules/
 
 # VSCode local project configuration folder
 .vscode/
+
+# All .lock files
+
+*.lock*
