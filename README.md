@@ -1,3 +1,3 @@
-# telecom-api
+# Sample RestAPI Project
 
-Projeto de API.
+Sample Rest API project.
