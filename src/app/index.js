@@ -2,8 +2,8 @@ import cors from '@koa/cors'
 import Koa from 'koa'
 import bodyparser from 'koa-bodyparser'
 import mongoose from 'mongoose'
-import env from './env'
-import router from './routes'
+import env from '../env'
+import routers from './routers'
 
 class App {
   constructor () {
@@ -20,6 +20,16 @@ class App {
 
     // Middleware to set header that enable CORS
     this.app.use(cors())
+
+    // Middleware to handle exceptions
+    this.app.use(async (ctx, next) => {
+      try {
+        await next()
+      } catch (err) {
+        ctx.status = 500
+        ctx.body = { message: err.message }
+      }
+    })
   }
 
   routes () {
@@ -32,9 +42,9 @@ class App {
       await next()
     })
 
-    // use the app routes
-    this.app.use(router.routes())
-    this.app.use(router.allowedMethods())
+    // use the app routers
+    this.app.use(routers.routes())
+    this.app.use(routers.allowedMethods())
   }
 
   database () {

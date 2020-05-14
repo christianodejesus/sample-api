@@ -1,11 +1,9 @@
 import User from '../schemas/User'
 
-class UserController {
+class UsersController {
   async index (ctx) {
     const users = await User.find()
     ctx.body = users
-
-    return ctx
   }
 
   async create (ctx) {
@@ -15,8 +13,7 @@ class UserController {
     })
 
     ctx.body = user
-    return ctx
   }
 }
 
-export default new UserController()
+export default new UsersController()
