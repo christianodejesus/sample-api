@@ -4,9 +4,7 @@ module.exports = {
     node: true,
     jest: true
   },
-  extends: [
-    'standard'
-  ],
+  extends: ['standard'],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly'
@@ -46,9 +44,8 @@ module.exports = {
     ],
     'max-len': [
       'error',
-      {
-        code: 120
-      }
-    ]
+      { code: 120 }
+    ],
+    'no-console': 'error'
   }
 }

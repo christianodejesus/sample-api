@@ -6,8 +6,4 @@ const UserSchema = new Schema({
   password: String
 }, { timestamps: true })
 
-// UserSchema.methods.fullName = function () {
-//   return `${this.firstName} ${this.lastName}`
-// }
-
 export default model('User', UserSchema)
